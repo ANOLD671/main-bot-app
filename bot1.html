@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Bot 1</title>
+</head>
+<body>
+<h2>Mini Bot 1</h2>
+<p>Welcome! This is a simulated mini-bot.</p>
+
+<textarea id="input" placeholder="Type something..." style="width:80%;height:50px;"></textarea><br>
+<button onclick="sendMessage()">Send</button>
+
+<div id="output" style="margin-top:20px;"></div>
+
+<script>
+function sendMessage() {
+    const input = document.getElementById('input').value;
+    const output = document.getElementById('output');
+    output.innerHTML += `<p><b>You:</b> ${input}</p>`;
+    output.innerHTML += `<p><b>Bot:</b> Echo → ${input}</p>`;
+    document.getElementById('input').value = '';
+}
+</script>
+</body>
+</html>
