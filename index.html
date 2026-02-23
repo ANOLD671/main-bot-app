@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main Bot Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Main Bot Dashboard</h1>
+<p>Click a mini-bot to launch it:</p>
+
+<!-- Telegram Login Widget -->
+<div id="login">
+    <script async src="https://telegram.org/js/telegram-widget.js?7"
+        data-telegram-login="YOUR_BOT_USERNAME"  <!-- replace with your bot username -->
+        data-size="large"
+        data-userpic="false"
+        data-request-access="write"
+        data-on-auth="onTelegramAuth(user)">
+    </script>
+</div>
+
+<!-- Buttons hidden until login -->
+<div class="buttons" style="display:none">
+    <button onclick="launchMiniBot('bot1')">Mini Bot 1</button>
+    <button onclick="launchMiniBot('bot2')">Mini Bot 2</button>
+</div>
+
+<iframe id="miniBotFrame" src="" frameborder="0"></iframe>
+
+<script src="script.js"></script>
+
+<script>
+// Telegram Login callback
+function onTelegramAuth(user) {
+    console.log('Telegram user info:', user);
+
+    // Example subscription check (replace with real API later)
+    // Only allow users with a specific user id or channel membership
+    const allowedUsers = [123456789]; // put your own Telegram IDs here
+    if(!allowedUsers.includes(user.id)){
+        alert("Access denied! You must subscribe to the channel.");
+        return;
+    }
+
+    // Show buttons if user allowed
+    document.querySelector('.buttons').style.display = 'block';
+    document.getElementById('login').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
